@@ -30,8 +30,8 @@ def download():
     result = model.transcribe('./' + filename, verbose=True, language='en')
     print(result)
     os.remove('./' + filename)
-    # model.cpu()
-    # del model
+    model.cpu()
+    del model
 
     # requests.post("http://localhost:3000/api/save-transcriptions-test", data=json.dumps(result))
 
