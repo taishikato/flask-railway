@@ -11,8 +11,6 @@ app = Flask(__name__)
 UPLOAD_FOLDER = './'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-model = whisper.load_model("large")
-
 @app.route('/')
 def index():
     return jsonify({"Choo Choo": "Welcome to your Flask app 🚅"})
@@ -26,7 +24,7 @@ def download():
     print(file.filename)
     filename = secure_filename(file.filename)
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-    # model = whisper.load_model("small")
+    model = whisper.load_model("base")
     result = model.transcribe('./' + filename, verbose=True, language='en')
     print(result)
     os.remove('./' + filename)
