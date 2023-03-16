@@ -27,7 +27,7 @@ def download():
     filename = secure_filename(file.filename)
     file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
     result = model.transcribe('./' + filename, verbose=True, language='en')
-    print(result)
+    # print(result)
     os.remove('./' + filename)
     # model.cpu()
     # del model
